@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#0a0512">
+  <title>Neon Tetris</title>
+  
+  <!-- SEO -->
+  <meta name="description" content="A fast, retro synthwave styled classic Tetris game, optimized for mobile devices with instant gameplay start.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="game-container">
+    
+    <!-- Top HUD Bar -->
+    <header class="hud-bar">
+      <div class="hud-item">
+        <span class="label">SCORE</span>
+        <span class="value" id="score-val">0000</span>
+      </div>
+      <div class="hud-item">
+        <span class="label">LEVEL</span>
+        <span class="value" id="level-val">1</span>
+      </div>
+      <div class="hud-item">
+        <span class="label">BEST</span>
+        <span class="value" id="highscore-val">0000</span>
+      </div>
+    </header>
+
+    <!-- Main Game Workspace (Board + Preview Panel) -->
+    <main class="game-board-area">
+      <!-- Main Game Canvas (10x20 Grid) -->
+      <div class="canvas-wrapper">
+        <canvas id="tetris-canvas"></canvas>
+      </div>
+
+      <!-- Next Piece Sidebar Panel -->
+      <aside class="side-panel">
+        <div class="preview-box">
+          <span class="panel-label">NEXT</span>
+          <div class="preview-canvas-wrapper">
+            <canvas id="preview-canvas"></canvas>
+          </div>
+        </div>
+        <div class="side-stats">
+          <div class="side-stat">
+            <span class="label">LINES</span>
+            <span class="value" id="lines-val">0</span>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <!-- Ergonomic Bottom Mobile Gamepad Buttons -->
+    <nav class="gamepad" aria-label="Mobile Controls">
+      <div class="gamepad-row-1">
+        <button class="gp-btn" id="btn-left" aria-label="Move Left">
+          <svg viewBox="0 0 24 24" width="28" height="28">
+            <path fill="currentColor" d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+          </svg>
+        </button>
+        <button class="gp-btn" id="btn-rotate" aria-label="Rotate Block">
+          <svg viewBox="0 0 24 24" width="28" height="28">
+            <path fill="currentColor" d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.95 20 14.53 20 13c0-4.42-3.58-8-8-8zm-6 8c0-1.01.25-1.97.7-2.8L5.24 8.74C4.46 10.05 4 11.47 4 13c0 4.42 3.58 8 8 8v-4c-3.31 0-6-2.69-6-6z"/>
+          </svg>
+        </button>
+        <button class="gp-btn" id="btn-right" aria-label="Move Right">
+          <svg viewBox="0 0 24 24" width="28" height="28">
+            <path fill="currentColor" d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+          </svg>
+        </button>
+      </div>
+      <div class="gamepad-row-2">
+        <button class="gp-btn drop-btn" id="btn-drop" aria-label="Hard Drop">
+          <span>DROP BLOCK</span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Game Over Overlay (Starts hidden, shown only on crash) -->
+    <div class="overlay" id="game-over-overlay">
+      <div class="glass-panel">
+        <div class="crash-title">GAME OVER</div>
+        <p class="subtitle">GRID LOCK DETECTED</p>
+        
+        <div class="final-score-panel">
+          <div class="final-stat-box">
+            <span class="label">FINAL SCORE</span>
+            <span class="value" id="final-score">0000</span>
+          </div>
+          <div class="final-stat-box">
+            <span class="label">BEST RECORD</span>
+            <span class="value" id="final-highscore">0000</span>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" id="restart-btn">PLAY AGAIN</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
